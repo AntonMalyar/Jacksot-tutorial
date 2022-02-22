@@ -54,7 +54,13 @@ public class CarTest {
 
         Assertions.assertEquals("Mercedes", car.brand);
         Assertions.assertEquals(4, car.doors);
-
+    }
+    @Test
+    void ReadObjectFromJSON_ByteArray() throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        String carJson = "{ \"brand\" : \"Mercedes\", \"doors\" : 5 }";
+        byte[] bytes = carJson.getBytes();
+        Car car = objectMapper.readValue(bytes, Car.class);
     }
 
 
