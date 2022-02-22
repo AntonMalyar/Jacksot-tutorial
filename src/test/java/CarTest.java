@@ -4,6 +4,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+import java.io.StringReader;
+
 public class CarTest {
     @Test
     void deserializeJavaObjectsFromJSON() throws JsonProcessingException {
@@ -13,6 +16,16 @@ public class CarTest {
 
         Assertions.assertEquals("Mercedes", car.brand);
         Assertions.assertEquals(5, car.doors);
+    }
+    @Test
+    void ReadObjectFromJSONReader() throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        String carJson = "{ \"brand\" : \"Mercedes\", \"doors\" : 4 }";
+        StringReader stringReader = new StringReader(carJson);
+        Car car = objectMapper.readValue(stringReader, Car.class);
+
+        Assertions.assertEquals("Mercedes", car.brand);
+        Assertions.assertEquals(4, car.doors);
     }
 
 }
