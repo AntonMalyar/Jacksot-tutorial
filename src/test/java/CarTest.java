@@ -4,10 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.StringReader;
+import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -49,5 +46,16 @@ public class CarTest {
         Assertions.assertEquals("Mercedes", car.brand);
         Assertions.assertEquals(4, car.doors);
     }
+    @Test
+    void ReadObjectFromJSON_InputStream() throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        InputStream inputStream = new FileInputStream("C:\\Users\\fuckyou\\Desktop\\Jackson\\JSON\\car.json");
+        Car car = objectMapper.readValue(inputStream, Car.class);
+
+        Assertions.assertEquals("Mercedes", car.brand);
+        Assertions.assertEquals(4, car.doors);
+
+    }
+
 
 }
