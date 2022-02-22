@@ -8,6 +8,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.StringReader;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class CarTest {
     @Test
@@ -34,6 +36,15 @@ public class CarTest {
         ObjectMapper objectMapper = new ObjectMapper();
         File file = new File("C:\\Users\\fuckyou\\Desktop\\Jackson\\JSON\\car.json");
         Car car = objectMapper.readValue(file, Car.class);
+
+        Assertions.assertEquals("Mercedes", car.brand);
+        Assertions.assertEquals(4, car.doors);
+    }
+    @Test
+    void ReadObjectFromJSONviaURL() throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        URL url = new URL("file:C:\\Users\\fuckyou\\Desktop\\Jackson\\JSON\\car.json");
+        Car car = objectMapper.readValue(url, Car.class);
 
         Assertions.assertEquals("Mercedes", car.brand);
         Assertions.assertEquals(4, car.doors);
