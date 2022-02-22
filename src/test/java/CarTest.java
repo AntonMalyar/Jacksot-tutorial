@@ -1,5 +1,6 @@
 import ObjectMapper.practice.Car;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -7,6 +8,9 @@ import org.junit.jupiter.api.Test;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class CarTest {
     @Test
@@ -74,6 +78,15 @@ public class CarTest {
 
         Assertions.assertEquals("ford", cars[0].brand);
         Assertions.assertEquals("Fiat", cars[1].brand);
+    }
+    @Test
+    void ReadObjectListFromJSON_ArrayString() throws JsonProcessingException {
+        String jsonArray = "[{\"brand\":\"ford\"}, {\"brand\":\"Fiat\"}]";
+        ObjectMapper objectMapper = new ObjectMapper();
+        LinkedList<Car> cars = objectMapper.readValue(jsonArray, new TypeReference<LinkedList<Car>>(){});
+
+        Assertions.assertEquals("ford", cars.get(0).brand);
+        Assertions.assertEquals("Fiat", cars.get(1).brand);
     }
 
 
