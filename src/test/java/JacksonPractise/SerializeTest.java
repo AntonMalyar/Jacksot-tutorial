@@ -1,16 +1,17 @@
 package JacksonPractise;
 
-import ObjectMapper.practice.Car;
+import ObjectMapperPractice.Car;
+import ObjectMapperPractice.Class_1;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.concurrent.Callable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class SerializeTest {
     @Test
@@ -41,5 +42,18 @@ public class SerializeTest {
         String json = objectMapper.writeValueAsString(car);
 
         Assertions.assertEquals(pattern, json);
+    }
+    @Test
+    void JacksonFormattingDatesAsStrings() throws JsonProcessingException {
+        Class_1 class_1 = new Class_1();
+        class_1.date = new Date();
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        objectMapper.setDateFormat(dateFormat);
+
+        String output = objectMapper.writeValueAsString(class_1);
+        Assertions.assertEquals("{\"date\":\"22-02-2022\"}", output);
     }
 }

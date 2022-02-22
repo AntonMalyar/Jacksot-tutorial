@@ -1,4 +1,4 @@
-package ObjectMapper.practice;
+package ObjectMapperPractice;
 
 public class Car {
     public String brand = null;
