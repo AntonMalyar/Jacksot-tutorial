@@ -1,4 +1,4 @@
-package deserialize;
+package JacksonPractise;
 
 import ObjectMapper.practice.Car;
 import com.fasterxml.jackson.core.JsonProcessingException;
