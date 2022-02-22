@@ -1,4 +1,4 @@
-package ObjectMapperPractice;
+package deserialize;
 
 import ObjectMapper.practice.Car;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -8,11 +8,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 
 public class CarTest {
     @Test
@@ -90,6 +87,5 @@ public class CarTest {
         Assertions.assertEquals("ford", cars.get(0).brand);
         Assertions.assertEquals("Fiat", cars.get(1).brand);
     }
-
 
 }
