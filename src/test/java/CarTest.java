@@ -18,7 +18,7 @@ public class CarTest {
         Assertions.assertEquals(5, car.doors);
     }
     @Test
-    void ReadObjectFromJSONReader() throws IOException {
+    void ReadObjectFromJSONStringReader() throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         String carJson = "{ \"brand\" : \"Mercedes\", \"doors\" : 4 }";
         StringReader stringReader = new StringReader(carJson);
