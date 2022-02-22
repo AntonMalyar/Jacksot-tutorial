@@ -61,6 +61,19 @@ public class CarTest {
         String carJson = "{ \"brand\" : \"Mercedes\", \"doors\" : 5 }";
         byte[] bytes = carJson.getBytes();
         Car car = objectMapper.readValue(bytes, Car.class);
+
+        Assertions.assertEquals("Mercedes", car.brand);
+        Assertions.assertEquals(5, car.doors);
+    }
+    @Test
+    void ReadObjectArrayFromJSONArrayString() throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        String jsonArray = "[{\"brand\":\"ford\"}, {\"brand\":\"Fiat\"}]";
+
+        Car[]cars = objectMapper.readValue(jsonArray, Car[].class);
+
+        Assertions.assertEquals("ford", cars[0].brand);
+        Assertions.assertEquals("Fiat", cars[1].brand);
     }
 
 
