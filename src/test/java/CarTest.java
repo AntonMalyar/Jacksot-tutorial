@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.StringReader;
 
@@ -23,6 +25,15 @@ public class CarTest {
         String carJson = "{ \"brand\" : \"Mercedes\", \"doors\" : 4 }";
         StringReader stringReader = new StringReader(carJson);
         Car car = objectMapper.readValue(stringReader, Car.class);
+
+        Assertions.assertEquals("Mercedes", car.brand);
+        Assertions.assertEquals(4, car.doors);
+    }
+    @Test
+    void ReadObjectFromJSON_File() throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        File file = new File("C:\\Users\\fuckyou\\Desktop\\Jackson\\JSON\\car.json");
+        Car car = objectMapper.readValue(file, Car.class);
 
         Assertions.assertEquals("Mercedes", car.brand);
         Assertions.assertEquals(4, car.doors);
