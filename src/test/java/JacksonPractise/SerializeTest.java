@@ -1,6 +1,7 @@
 package JacksonPractise;
 
 import ObjectMapper.practice.Car;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -28,5 +29,17 @@ public class SerializeTest {
         Assertions.assertEquals("BMW", carTest.brand);
         Assertions.assertEquals(4, carTest.doors);
 
+    }
+    @Test
+    void generatingJSON_FromCarObjectIntoString() throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        Car car = new Car();
+        car.brand = "BMW";
+        car.doors = 4;
+        String pattern = "{\"brand\":\"BMW\",\"doors\":4}";
+        String json = objectMapper.writeValueAsString(car);
+
+        Assertions.assertEquals(pattern, json);
     }
 }
